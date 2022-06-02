@@ -1,10 +1,36 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {MyService} from "./my.service";
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <h1>Hello</h1>
+
+    <div>
+      My application &laquo;{{title}}&raquo; works!!!
+      <br>
+      And this is other component:
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <app-my-awesome></app-my-awesome>
+    </div>
+  `,
+  styles: [`
+    div {
+      color: gray;
+      border: 2px solid black;
+      padding: 15px;
+    }
+  `]
 })
 export class AppComponent {
-  title = 'my-app';
+  readonly title: string;
+
+  constructor(public helloService: MyService) {
+    this.title = helloService.hello();
+  }
+
 }
