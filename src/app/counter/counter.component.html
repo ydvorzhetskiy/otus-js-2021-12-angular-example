@@ -1,0 +1,15 @@
+<p>
+  Current value is <strong>{{counterService.currentValue$ | async}}</strong>
+</p>
+<p>
+  Set new value: <input #newValueInput type="number" [valueAsNumber]="true">
+  <button (click)="counterService.setValue(newValueInput.valueAsNumber)">
+    Set this value
+  </button>
+</p>
+<p>
+  Operations:
+  <button (click)="counterService.increase()">+</button>
+  &nbsp;
+  <button (click)="counterService.decrease()">-</button>
+</p>

@@ -1,36 +1,33 @@
 import {Component} from '@angular/core';
 import {MyService} from "./my.service";
+import {CounterService} from "./counter.service";
 
 @Component({
   selector: 'app-root',
   template: `
     <h1>Hello</h1>
 
-    <div>
-      My application &laquo;{{title}}&raquo; works!!!
-      <br>
-      And this is other component:
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <app-my-awesome></app-my-awesome>
-    </div>
+    <app-well>
+      <app-counter></app-counter>
+    </app-well>
+    <app-well>
+      <app-counter></app-counter>
+    </app-well>
+    <app-well>
+      <app-counter></app-counter>
+    </app-well>
+
+    <app-well>
+      Value from service : {{counterService.currentValue$ | async | number: '3.0'}}
+    </app-well>
+
+    <app-well>
+      <button (click)="counterService.reset()">Reset all values!</button>
+    </app-well>
   `,
-  styles: [`
-    div {
-      color: gray;
-      border: 2px solid black;
-      padding: 15px;
-    }
-  `]
+  styles: []
 })
 export class AppComponent {
-  readonly title: string;
-
-  constructor(public helloService: MyService) {
-    this.title = helloService.hello();
+  constructor(public counterService: CounterService) {
   }
-
 }
